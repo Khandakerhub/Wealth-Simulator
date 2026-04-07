@@ -44,11 +44,15 @@
         .container::-webkit-scrollbar { display: none; }
 
         h2 { 
-            text-align: center; 
+            text-align: center;
             margin-top: 0; 
             color: var(--primary); 
             font-size: 1.5rem; 
             letter-spacing: -0.5px; 
+        }
+        .fa-solid { 
+            color: goldenrod;
+            margin-right: 10px;
         }
     
 
@@ -115,7 +119,7 @@
             width: 100%;
             padding: 15px;
             background-color: var(--primary);
-            color: white;
+            color: goldenrod;
             border: none;
             border-radius: 10px;
             font-size: 16px;

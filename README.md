@@ -1,9 +1,3 @@
-This is a professional `README.md` file designed for your project. It explains what the calculator does, how the math works (including your specific "Net Profit" logic), and how to set it up.
-
-You can save this text as a file named `README.md` in the same folder as your HTML file.
-
----
-
 # 📈 Wealth Simulator
 
 A high-precision, responsive web tool designed to simulate long-term investment growth. Unlike standard calculators, this tool focuses on **Net Performance**, tracking the difference between your out-of-pocket contributions and your final portfolio value.

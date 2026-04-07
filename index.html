@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Wealth Simulator</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2><i class="fa-solid fa-sack-dollar"></i> Wealth Simulator</h2>
+    
+    <div class="grid">
+        <div class="field full">
+            <label>Initial Investment ($)</label>
+            <input title="p" type="number" id="p" value="10000">
+        </div>
+
+        <div class="field">
+            <label>Recurring Add ($)</label>
+            <input title="pmt" type="number" id="pmt" value="100">
+        </div>
+
+        <div class="field">
+            <label>Add Frequency</label>
+            <select title="add_freq" id="add_freq">
+                <option value="52">Weekly</option>
+                <option value="12" selected>Monthly</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Div. Yield (%)</label>
+            <input title="yield" type="number" id="yield" value="4" step="0.1">
+        </div>
+
+        <div class="field">
+            <label>Stock / ETF Growth (%)</label>
+            <input title="growth" type="number" id="growth" value="5" step="0.1">
+        </div>
+
+        <div class="field">
+            <label>Reinvest Freq.</label>
+            <select id="div_freq" title="div_freq">
+                <option value="52">Weekly</option>
+                <option value="12">Monthly</option>
+                <option value="4" selected>Quarterly</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Years</label>
+            <input title="years" type="number" id="years" value="10">
+        </div>
+    </div>
+
+    <button onclick="calculate()">Analyze Performance</button>
+
+    <hr>
+
+    <div class="results-group">
+        <div class="result-item highlight">
+            <span>Total Contribution:</span>
+            <strong id="res-contrib">$0.00</strong>
+        </div>
+        <div class="result-item highlight">
+            <span>Final Portfolio Value:</span>
+            <strong id="res-total">$0.00</strong>
+        </div>
+        <div class="result-item" id="card-net">
+            <span>Net Profit / Loss:</span>
+            <strong id="res-net">$0.00</strong>
+        </div>
+        <div class="result-item" id="card-annual">
+            <span>Avg. Annual Net:</span>
+            <strong id="res-annual">$0.00</strong>
+        </div>
+        <div class="result-item" id="card-monthly">
+            <span>Avg. Monthly Net:</span>
+            <strong id="res-monthly">$0.00</strong>
+        </div>
+    </div>
+    <div class="footer">
+    <h6>Made with ❤️ by <a href="https://khandakerhub.github.io/">MK</a> all rights reserved © 2026</h6>
+</div>
+</div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Responsive Wealth Simulator</title>
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+        }
+
+        /* Standardize box sizing for all elements */
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Use dvh to handle mobile browser toolbars correctly */
+            min-height: 100dvh; 
+            margin: 0;
+            padding: 10px;
+            /* Remove vertical scroll bar */
+            overflow-y: hidden; 
+        }
+
+        .container {
+            background: var(--card);
+            width: 100%;
+            max-width: 480px;
+            padding: 1.25rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            /* Ensure container itself doesn't cause overflow */
+            max-height: 98dvh;
+            overflow-y: auto; /* Allow scrolling INSIDE the card only if content exceeds phone height */
+            scrollbar-width: none; /* Firefox: hide scrollbar */
+            -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
+        }
+
+        /* Chrome/Safari: hide scrollbar inside the container */
+        .container::-webkit-scrollbar { display: none; }
+
+        h2 { 
+            text-align: center; 
+            margin: 0 0 1rem 0; 
+            color: var(--primary); 
+            font-size: 1.2rem; 
+            letter-spacing: -0.5px;
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem; 
+        }
+
+        .full { grid-column: span 2; }
+
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr; gap: 0.5rem; }
+            .full { grid-column: span 1; }
+            h2 { font-size: 1.1rem; }
+        }
+
+        label { 
+            display: block; 
+            font-size: 10px; 
+            font-weight: 800; 
+            color: #64748b; 
+            text-transform: uppercase; 
+            margin-bottom: 4px; 
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 16px; /* Best for mobile zoom prevention */
+            background: #fff;
+        }
+
+        input:focus { outline: none; border-color: var(--accent); }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        hr { border: 0; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+
+        .results-group { display: flex; flex-direction: column; gap: 8px; }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #cbd5e1;
+        }
+
+        .result-item span { font-size: 11px; color: #64748b; font-weight: 600; }
+        .result-item strong { font-size: 14px; font-family: 'Courier New', monospace; }
+
+        .highlight { background: #f1f5f9; border-left-color: var(--primary); }
+        .pos { border-left-color: var(--success); color: var(--success); }
+        .neg { border-left-color: var(--danger); color: var(--danger); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📈 Wealth Simulator</h2>
+    
+    <div class="grid">
+        <div class="field full">
+            <label>Initial Investment ($)</label>
+            <input type="number" id="p" value="10000" inputmode="decimal">
+        </div>
+
+        <div class="field">
+            <label>Recurring Add ($)</label>
+            <input type="number" id="pmt" value="100" inputmode="decimal">
+        </div>
+
+        <div class="field">
+            <label>Add Frequency</label>
+            <select id="add_freq">
+                <option value="52">Weekly</option>
+                <option value="12" selected>Monthly</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Div. Yield (%)</label>
+            <input type="number" id="yield" value="4" step="0.1" inputmode="decimal">
+        </div>
+
+        <div class="field">
+            <label>Stock Growth (%)</label>
+            <input type="number" id="growth" value="5" step="0.1" inputmode="decimal">
+        </div>
+
+        <div class="field">
+            <label>Reinvest Freq.</label>
+            <select id="div_freq">
+                <option value="52">Weekly</option>
+                <option value="12">Monthly</option>
+                <option value="4" selected>Quarterly</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Years</label>
+            <input type="number" id="years" value="10" inputmode="numeric">
+        </div>
+    </div>
+
+    <button onclick="calculate()">Analyze Performance</button>
+
+    <hr>
+
+    <div class="results-group">
+        <div class="result-item highlight">
+            <span>Total Contribution</span>
+            <strong id="res-contrib">$0.00</strong>
+        </div>
+        <div class="result-item highlight">
+            <span>Final Portfolio Value</span>
+            <strong id="res-total">$0.00</strong>
+        </div>
+        <div class="result-item" id="card-net">
+            <span>Net Profit / Loss</span>
+            <strong id="res-net">$0.00</strong>
+        </div>
+        <div class="result-item" id="card-annual">
+            <span>Avg. Annual Net</span>
+            <strong id="res-annual">$0.00</strong>
+        </div>
+        <div class="result-item" id="card-monthly">
+            <span>Avg. Monthly Net</span>
+            <strong id="res-monthly">$0.00</strong>
+        </div>
+    </div>
+</div>
+
+<script>
+function calculate() {
+    const P = parseFloat(document.getElementById('p').value) || 0;
+    const PMT = parseFloat(document.getElementById('pmt').value) || 0;
+    const n_add = parseInt(document.getElementById('add_freq').value);
+    const n_div = parseInt(document.getElementById('div_freq').value);
+    const y = (parseFloat(document.getElementById('yield').value) || 0) / 100;
+    const g = (parseFloat(document.getElementById('growth').value) || 0) / 100;
+    const t = parseFloat(document.getElementById('years').value) || 0;
+
+    const r = y + g;
+    const totalInvested = P + (PMT * n_add * t);
+
+    const pmt_adjusted = PMT * (n_add / n_div); 
+    const nt = n_div * t;
+    const rn = r / n_div;
+
+    let finalValue = 0;
+    if (r === 0) {
+        finalValue = totalInvested;
+    } else {
+        const compoundFactor = Math.pow((1 + rn), nt);
+        const principalPart = P * compoundFactor;
+        const annuityPart = pmt_adjusted * ((compoundFactor - 1) / rn);
+        finalValue = principalPart + annuityPart;
+    }
+
+    const netProfitLoss = finalValue - totalInvested;
+    const annualNet = t > 0 ? netProfitLoss / t : 0;
+    const monthlyNet = annualNet / 12;
+
+    document.getElementById('res-contrib').innerText = formatCurrency(totalInvested, false);
+    document.getElementById('res-total').innerText = formatCurrency(finalValue, false);
+
+    updateStatus('res-net', 'card-net', netProfitLoss, true);
+    updateStatus('res-annual', 'card-annual', annualNet, true);
+    updateStatus('res-monthly', 'card-monthly', monthlyNet, true);
+}
+
+function updateStatus(valId, cardId, val, showSigns) {
+    const valEl = document.getElementById(valId);
+    const cardEl = document.getElementById(cardId);
+    valEl.innerText = formatCurrency(val, showSigns);
+    cardEl.className = 'result-item';
+    if (val > 0.01) { cardEl.classList.add('pos'); valEl.style.color = 'var(--success)'; }
+    else if (val < -0.01) { cardEl.classList.add('neg'); valEl.style.color = 'var(--danger)'; }
+    else { valEl.style.color = 'inherit'; }
+}
+
+function formatCurrency(num, showSigns) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD', signDisplay: showSigns ? 'always' : 'auto'
+    }).format(num);
+}
+calculate();
+</script>
+</body>
+</html>

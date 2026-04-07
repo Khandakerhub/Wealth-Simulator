@@ -1,0 +1,161 @@
+:root {
+            --bg: #21242b;
+            --card: #c0c1db;
+            --primary: #090e1a;
+            --accent: #2563eb;
+            --success: #02a726;
+            --danger: #e70606;
+            --border: #8b929c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Use dvh to handle mobile browser toolbars correctly */
+            min-height: 100dvh; 
+            margin: 0;
+            padding: 10px;
+            /* Remove vertical scroll bar */
+            overflow-y: hidden;
+        }
+
+        .container {
+            background: var(--card);
+            width: 100%;
+            max-width: 550px;
+            height: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            /* Ensure container itself doesn't cause overflow */
+            max-height: 98dvh;
+            overflow-y: auto; /* Allow scrolling INSIDE the card only if content exceeds phone height */
+            scrollbar-width: none; /* Firefox: hide scrollbar */
+            Syntax: none;
+            -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
+        }
+
+        /* Chrome/Safari: hide scrollbar inside the container */
+        .container::-webkit-scrollbar { display: none; }
+
+        h2 { 
+            text-align: center; 
+            margin-top: 0; 
+            color: var(--primary); 
+            font-size: 1.5rem; 
+            letter-spacing: -0.5px; 
+        }
+    
+
+        /* Responsive Grid Logic */
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; /* Default 2 columns */
+            gap: 1rem; 
+        }
+
+        .full { grid-column: span 2; }
+
+        /* Mobile Adjustments: Stack columns on small screens */
+        @media (max-width: 480px) {
+            .container {
+            border-radius: 10px;
+            }
+            .grid {
+                grid-template-columns: 1fr; /* Switch to 1 column */
+            }
+            .full {
+                grid-column: span 1;
+            }
+            .container {
+                padding: 0.75rem;
+            }
+            input, select, button {
+                font-size: 16px; /* Prevents iOS zoom on focus */
+            }
+            label {  
+            font-size: 10px; 
+            font-weight: 600;
+            margin-bottom: 3px; 
+            }
+            input, select {
+            padding: 6px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            }
+        }
+
+        label { 
+            display: block; 
+            font-size: 11px; 
+            font-weight: 800; 
+            color: #64748b; 
+            text-transform: uppercase; 
+            margin-bottom: 5px; }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input:focus { outline: none; border-color: var(--accent); }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.9; }
+
+        hr { 
+            border: 0; 
+            border-top: 1px solid var(--border); 
+            margin: 1rem 0; 
+        }
+
+        .results-group { display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 5px solid #cbd5e1;
+        }
+
+        .result-item span { font-size: 13px; color: #64748b; font-weight: 600; }
+        .result-item strong { font-size: 16px; font-family: 'Courier New', monospace; }
+
+        /* Highlight Cards */
+        .highlight { background: #f1f5f9; border-left-color: var(--primary); }
+        .pos { border-left-color: var(--success); color: var(--success); }
+        .neg { border-left-color: var(--danger); color: var(--danger); }
+        
+        /* Footer */
+        .footer {display:block; text-align: center; margin-top: 0.75rem; margin-bottom: -2rem; }
+        .footer a {color: var(--success); text-decoration: none; font-weight: 600;}
+        h6 { text-align: center; margin-top: 0; color: var(--primary); font-size: 0.65rem; font-weight: 300;}

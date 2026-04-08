@@ -5,7 +5,7 @@
             --label:#959aa1;
             --inputBG:#aeaeda;
             --primary: #090e1a;
-            --accent: #daa520;
+            --golden: #dfa71c;
             --success: #9cfc01;
             --danger: #ff0000;
             --border: #7f8083;
@@ -54,7 +54,7 @@
             letter-spacing: -0.5px; 
         }
         .fa-solid { 
-            color: var(--accent);
+            color: var(--golden);
             margin-right: 10px;
         }
     
@@ -117,14 +117,14 @@
             transition: border-color 0.2s;
         }
 
-        input:focus { outline: none; border-color: var(--accent); }
+        input:focus { outline: none; border-color: var(--golden); }
 
         button {
             width: 100%;
             padding: 15px;
             background-color: var(--primary);
-            color: var(--accent);
-            border: 1px solid var(--accent);
+            color: var(--golden);
+            border: 1px solid var(--golden);
             border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
@@ -160,11 +160,11 @@
         .result-item strong { font-size: 16px; font-family: 'Courier New', monospace; }
 
         /* Highlight Cards */
-        .highlight { background: var(--title); border-left-color: var(--accent); }
+        .highlight { background: var(--title); border-left-color: var(--golden); }
         .pos { border-left-color: var(--success); border-bottom-color: var(--success); color: var(--success); }
         .neg { border-left-color: var(--danger); border-bottom-color: var(--danger); color: var(--danger); }
         
         /* Footer */
         .footer {display:block; text-align: center; margin-top: 0.75rem; margin-bottom: -2rem; }
-        .footer a {color: var(--accent); text-decoration: none; font-weight: 600;}
+        .footer a {color: var(--golden); text-decoration: none; font-weight: 600;}
         h6 { text-align: center; margin-top: 0; color: var(--title); font-size: 0.65rem; font-weight: 300;}

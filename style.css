@@ -2,7 +2,7 @@
             --bg: #21242b;
             --card: #c0c1db;
             --primary: #090e1a;
-            --accent: #2563eb;
+            --accent: #daa520;
             --success: #02a726;
             --danger: #e70606;
             --border: #8b929c;
@@ -51,7 +51,7 @@
             letter-spacing: -0.5px; 
         }
         .fa-solid { 
-            color: goldenrod;
+            color: var(--accent);
             margin-right: 10px;
         }
     
@@ -119,7 +119,7 @@
             width: 100%;
             padding: 15px;
             background-color: var(--primary);
-            color: goldenrod;
+            color: var(--accent);
             border: none;
             border-radius: 10px;
             font-size: 16px;
@@ -129,7 +129,7 @@
             transition: opacity 0.2s;
         }
 
-        button:hover { opacity: 0.9; }
+        button:hover { opacity: 0.85; }
 
         hr { 
             border: 0; 

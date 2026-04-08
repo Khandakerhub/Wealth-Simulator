@@ -1,11 +1,14 @@
 :root {
             --bg: #21242b;
-            --card: #c0c1db;
+            --title: #d5e2ee;
+            --card: #45465c;
+            --label:#959aa1;
+            --inputBG:#aeaeda;
             --primary: #090e1a;
             --accent: #daa520;
-            --success: #02a726;
-            --danger: #e70606;
-            --border: #8b929c;
+            --success: #9cfc01;
+            --danger: #ff0000;
+            --border: #7f8083;
         }
 
         * { box-sizing: border-box; }
@@ -46,7 +49,7 @@
         h2 { 
             text-align: center;
             margin-top: 0; 
-            color: var(--primary); 
+            color: var(--title); 
             font-size: 1.5rem; 
             letter-spacing: -0.5px; 
         }
@@ -99,11 +102,12 @@
             display: block; 
             font-size: 11px; 
             font-weight: 800; 
-            color: #64748b; 
+            color: var(--label); 
             text-transform: uppercase; 
             margin-bottom: 5px; }
         
         input, select {
+            background-color: var(--title);
             width: 100%;
             padding: 10px;
             border: 2px solid var(--border);
@@ -120,7 +124,7 @@
             padding: 15px;
             background-color: var(--primary);
             color: var(--accent);
-            border: none;
+            border: 1px solid var(--accent);
             border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
@@ -146,20 +150,21 @@
             display: flex;
             justify-content: space-between;
             padding: 10px 15px;
-            background: #f8fafc;
+            background: var(--primary);
             border-radius: 10px;
-            border-left: 5px solid #cbd5e1;
+            border-left: 6px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
-        .result-item span { font-size: 13px; color: #64748b; font-weight: 600; }
+        .result-item span { font-size: 13px; color: var(--label); font-weight: 600; }
         .result-item strong { font-size: 16px; font-family: 'Courier New', monospace; }
 
         /* Highlight Cards */
-        .highlight { background: #f1f5f9; border-left-color: var(--primary); }
-        .pos { border-left-color: var(--success); color: var(--success); }
-        .neg { border-left-color: var(--danger); color: var(--danger); }
+        .highlight { background: var(--title); border-left-color: var(--accent); }
+        .pos { border-left-color: var(--success); border-bottom-color: var(--success); color: var(--success); }
+        .neg { border-left-color: var(--danger); border-bottom-color: var(--danger); color: var(--danger); }
         
         /* Footer */
         .footer {display:block; text-align: center; margin-top: 0.75rem; margin-bottom: -2rem; }
-        .footer a {color: var(--success); text-decoration: none; font-weight: 600;}
-        h6 { text-align: center; margin-top: 0; color: var(--primary); font-size: 0.65rem; font-weight: 300;}
+        .footer a {color: var(--accent); text-decoration: none; font-weight: 600;}
+        h6 { text-align: center; margin-top: 0; color: var(--title); font-size: 0.65rem; font-weight: 300;}

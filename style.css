@@ -1,170 +1,240 @@
 :root {
-            --bg: #21242b;
-            --title: #d5e2ee;
-            --text:#ccd4eb;
-            --card: #2c3038;
-            --label:#8d98c7;
-            --primary: #090e1a;
-            --golden: #dfa71c;
-            --success: #9cfc01;
-            --danger: #ff0000;
-        }
+  --bg: #181a1f;
+  --title: #d5e2ee;
+  --text: #c6c7cc;
+  --card: #2c3038;
+  --label: #dfa71c;
+  --border:#545455;
+  --primary: #0a0c11;
+  --success: #9cfc01;
+  --danger: #ff0000;
+}
 
-        * { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Use dvh to handle mobile browser toolbars correctly */
-            min-height: 100dvh; 
-            margin: 0;
-            padding: 10px;
-            /* Remove vertical scroll bar */
-            overflow-y: hidden;
-        }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Use dvh to handle mobile browser toolbars correctly */
+  min-height: 100dvh;
+  margin: 0;
+  padding: 10px;
+  /* Remove vertical scroll bar */
+  overflow-y: hidden;
+}
 
-        .container {
-            background: var(--card);
-            width: 100%;
-            max-width: 550px;
-            height: 100%;
-            padding: 1rem;
-            border-radius: 12px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            /* Ensure container itself doesn't cause overflow */
-            max-height: 98dvh;
-            overflow-y: auto; /* Allow scrolling INSIDE the card only if content exceeds phone height */
-            scrollbar-width: none; /* Firefox: hide scrollbar */
-            Syntax: none;
-            -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
-        }
+.container {
+  background: var(--card);
+  width: 100%;
+  max-width: 550px;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 20px 20px -5px rgba(7, 7, 7, 0.1);
+  /* Ensure container itself doesn't cause overflow */
+  max-height: 98dvh;
+  overflow-y: auto;
+  /* Allow scrolling INSIDE the card only if content exceeds phone height */
+  scrollbar-width: none;
+  /* Firefox: hide scrollbar */
+  Syntax: none;
+  -ms-overflow-style: none;
+  /* IE/Edge: hide scrollbar */
+}
 
-        /* Chrome/Safari: hide scrollbar inside the container */
-        .container::-webkit-scrollbar { display: none; }
+/* Chrome/Safari: hide scrollbar inside the container */
+.container::-webkit-scrollbar {
+  display: none;
+}
 
-        h2 { 
-            text-align: center;
-            margin-top: 0; 
-            color: var(--title); 
-            font-size: 1.5rem; 
-            letter-spacing: -0.5px; 
-        }
-        .fa-solid { 
-            color: var(--golden);
-            margin-right: 10px;
-        }
-    
+h2 {
+  text-align: center;
+  margin-top: 0;
+  color: var(--title);
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
 
-        /* Responsive Grid Logic */
-        .grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; /* Default 2 columns */
-            gap: 1rem; 
-        }
+.fa-solid {
+  color: var(--label);
+  margin-right: 10px;
+}
 
-        .full { grid-column: span 2; }
 
-        /* Mobile Adjustments: Stack columns on small screens */
-        @media (max-width: 360px) {
-            .container {
-            border-radius: 10px;
-            }
-            .grid {
-                grid-template-columns: 1fr; /* Switch to 1 column */
-            }
-            .full {
-                grid-column: span 1;
-            }
-            .container {
-                padding: 0.75rem;
-            }
-            input, select, button {
-                font-size: 16px; /* Prevents iOS zoom on focus */
-            }
-            label {  
-            font-size: 10px; 
-            font-weight: 600;
-            margin-bottom: 3px; 
-            }
-            input, select {
-            padding: 5px;
-            border: 1px solid var(--label);
-            border-radius: 5px;
-            font-size: 14px;
-            }
-        }
+/* Responsive Grid Logic */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Default 2 columns */
+  gap: 1rem;
+}
 
-        label { 
-            display: block; 
-            font-size: 11px; 
-            font-weight: 800; 
-            color: var(--text);
-            text-transform: uppercase; 
-            margin-bottom: 5px; }
-        
-        input, select {
-          color: var(--text);
-            background-color: var(--bg);
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--label);
-            border-radius: 8px;
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
+.full {
+  grid-column: span 2;
+}
 
-        input:focus { outline: none; border-color: var(--golden); }
+/* Mobile Adjustments: Stack columns on small screens */
+@media (max-width: 360px) {
+  .container {
+    border-radius: 10px;
+  }
 
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--primary);
-            color: var(--golden);
-            border: 1px solid var(--golden);
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            transition: opacity 0.2s;
-        }
+  .grid {
+    grid-template-columns: 1fr;
+    /* Switch to 1 column */
+  }
 
-        button:hover { opacity: 0.85; }
+  .full {
+    grid-column: span 1;
+  }
 
-        hr { 
-            border: 0; 
-            border-top: 1px solid var(--label); 
-            margin: 1rem 0; 
-        }
+  .container {
+    padding: 0.75rem;
+  }
 
-        .results-group { display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-        }
-        
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 15px;
-            background: var(--primary);
-            border-radius: 10px;
-            border-left: 6px solid var(--label);
-            border-bottom: 1px solid var(--label);
-        }
+  input,
+  select,
+  button {
+    font-size: 16px;
+    /* Prevents iOS zoom on focus */
+  }
 
-        .result-item span { font-size: 13px; color: var(--label); font-weight: 600; }
-        .result-item strong { font-size: 16px; font-family: 'Courier New', monospace; }
+  label {
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
 
-        /* Highlight Cards */
-        .highlight { color:var(--text); background: var(--bg); border-left-color: var(--golden); border-bottom-color: var(--golden); }
-        .pos { border-left-color: var(--success); border-bottom-color: var(--success); color: var(--success); }
-        .neg { border-left-color: var(--danger); border-bottom-color: var(--danger); color: var(--danger); }
-        
-        /* Footer */
-        .footer {display:block; text-align: center; margin-top: 0.75rem; margin-bottom: -2rem; }
-        .footer a {color: var(--golden); text-decoration: none; font-weight: 600;}
-        h6 { text-align: center; margin-top: 0; color: var(--title); font-size: 0.65rem; font-weight: 300;}
+  input,
+  select {
+    padding: 5px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 14px;
+  }
+}
+
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--label);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  color: var(--text);
+  background-color: var(--bg);
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--label);
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--label);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+hr {
+  border: 0;
+  color: var(--border);
+  margin: 1rem 0;
+}
+
+.results-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: var(--primary);
+  border-radius: 10px;
+  border-left: 6px solid var(--label);
+  border-bottom: 1px solid var(--label);
+}
+
+.result-item span {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.result-item strong {
+  font-size: 16px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Highlight Cards */
+.highlight {
+  color: var(--text);
+  background: var(--bg);
+  border-left-color: var(--label);
+  border-bottom-color: var(--label);
+}
+
+.pos {
+  border-left-color: var(--success);
+  border-bottom-color: var(--success);
+  color: var(--success);
+}
+
+.neg {
+  border-left-color: var(--danger);
+  border-bottom-color: var(--danger);
+  color: var(--danger);
+}
+
+/* Footer */
+.footer {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  margin-bottom: -2rem;
+}
+
+.footer a {
+  color: var(--label);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+h6 {
+  text-align: center;
+  margin-top: 0;
+  color: var(--title);
+  font-size: 0.65rem;
+  font-weight: 300;
+}
